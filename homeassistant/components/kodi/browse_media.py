@@ -60,7 +60,7 @@ async def build_item_response(media_library, payload, get_thumbnail_url=None):
     )
 
     if search_type in (MediaType.TVSHOW, MediaType.MOVIE) and search_id == "":
-        children.sort(key=lambda x: x.title.replace("The ", "", 1), reverse=False)
+        children.sort(key=lambda x: x.removeprefix("The "), reverse=False)
 
     response = BrowseMedia(
         media_class=CONTAINER_TYPES_SPECIFIC_MEDIA_CLASS.get(

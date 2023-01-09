@@ -35,8 +35,8 @@ def mocked_request_function(url: str) -> dict[str, Any]:
     ):
         return dummy_response_regions
 
-    warning_id = url.replace("https://warnung.bund.de/api31/warnings/", "").replace(
-        ".json", ""
-    )
+    warning_id = url.removeprefix(
+        "https://warnung.bund.de/api31/warnings/"
+    ).removesuffix(".json")
 
     return dummy_response_details[warning_id]

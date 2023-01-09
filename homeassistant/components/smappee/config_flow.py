@@ -45,7 +45,7 @@ class SmappeeFlowHandler(
         if not discovery_info.hostname.startswith(SUPPORTED_LOCAL_DEVICES):
             return self.async_abort(reason="invalid_mdns")
 
-        serial_number = discovery_info.hostname.replace(".local.", "").replace(
+        serial_number = discovery_info.hostname.removesuffix(".local.").replace(
             "Smappee", ""
         )
 
