@@ -220,7 +220,7 @@ class SamsungTVConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             raise AbortFlow(RESULT_NOT_SUPPORTED)
         self._model = dev_info.get("modelName")
         name = dev_info.get("name")
-        self._name = name.removeprefix("[TV] ") if name else device_type
+        self._name = name.replace("[TV] ", "") if name else device_type
         self._title = f"{self._name} ({self._model})"
         self._udn = _strip_uuid(dev_info.get("udn", info["id"]))
         if mac := mac_from_device_info(info):
